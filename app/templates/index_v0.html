@@ -1,0 +1,48 @@
+<!doctype html>
+<title>Blockness Registry</title>
+<p> {{message}} </p>
+<h2>Blockness</h2>
+<p>
+Here you create, issue, and verify blockchain certificates, as well as <a href='/registry'>register</a> your public keys.
+</p>
+<h2> Create Issuer Wallet </h2>
+<p> You'll need a bitcoin wallet in order to issue certificates to others. This step can be done with the click of a button.</p>
+<form action="/new" method="post">
+  username: <input type="text" name="user"><br>
+  password: <input type="text" name="pw"><br>
+  <input type="submit" value="New Issuer">
+</form>
+<br><br>
+<h2>Load Money</h2>
+<p>Writing data to the blockchain requires resources, so there is a small miner's fee of about $2 to $3 for each transaction you write. Luckily you can write <em>as much data as you want</em> within each transaction, and so it's most efficient to issue certificates in batches. The form below will allow you to load $10 onto your issuer wallet, which should be enough for roughly 3 batches.</p>
+<form action="/load" method="post">
+  username: <input type="text" name="user"><br>
+  password: <input type="text" name="pw"><br>
+  <input type="submit" value="Load">
+</form>
+<br><br>
+<h2>Issue Certificates!</h2>
+<p>Last but not least, the form below allows you to build and issue certificates to the blockchain. The local copies of the certificates will be returned to you as a zip file. You must include a CSV of the people whom would like to issue a certificate. The CSV's format should be the following:<br> 
+Firstname Lastname, email, publickey<br>
+e.g.<br>
+Vanessa Guzman,343@holbertonschool.com,1L9u9qjqTmK2B1qHUz1Xp46WRCK6BuqvuD<br> 
+Tyler Evans,321@holbertonschool.com,1K429q4qTgKhB1aHUzeXp46WR5KvBhqvxO<br> 
+Jannet Shaw,43@holbertonschool.com,1M2g6visEcn4B1qHFj1Kl46WRTY6BuqRPl<br> 
+</p>
+<form action="/issue" method="post" enctype="multipart/form-data">
+  username: <input type="text" name="user"><br>
+  password: <input type="text" name="pw"><br>
+  
+  website: <input type="text" name="issuer_url"><br>
+  email: <input type="text" name="issuer_email"><br>
+  issuer name: <input type="text" name="issuer_name"><br>
+  *website*id: <input type="text" name="issuer_id"><br>
+  *database*publickey: <input type="text" name="issuer_public_key"><br>
+  certification description: <input type="text" name="certificate_description"><br>
+  certification title: <input type="text" name="certificate_title"><br>
+  criteria narrative: <input type="text" name="criteria_narrative"><br>
+  badge id: <input type="text" name="badge_id"><br>
+  roster: <input type = "file" name="csv"><br><br>
+  <input type="submit" value="Issue Certificates"><br>
+</form>
+

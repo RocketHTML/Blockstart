@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cp "$1" "$2"
+cd "$2"
+tar -zxvf "$1"
+rm "$1"

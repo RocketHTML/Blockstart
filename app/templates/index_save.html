@@ -1,0 +1,57 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/styles_V1.css" rel="stylesheet">
+  <link href="/static/styles.css" rel="stylesheet">
+</head>
+<body>
+  <title>Blockness Registry</title>
+  <h2>Blockness</h2>
+  <p>
+    Here you create, issue, and verify blockchain certificates, as well as <a href='/registry'>register</a> your public keys.
+  </p>
+  <h2> Create Issuer Wallet </h2>
+  <p> You'll need a bitcoin wallet in order to issue certificates to others. This step can be done with the click of a button.</p>
+
+  <form action="/new" method="post">
+    <label>username</label> <input type="text" name="user">
+    <label>password:</label> <input type="text" name="pw">
+    <div class="submit"><input type="submit" value="New Issuer"></div>
+  </form>
+
+  <br><br>
+  <h2>Load Money</h2>
+  <p>Writing data to the blockchain requires resources, so there is a small miner's fee of about $2 to $3 for each transaction you write. Luckily you can write <em>as much data as you want</em> within each transaction, and so it's most efficient to issue
+    certificates in batches. The form below will allow you to load $10 onto your issuer wallet, which should be enough for roughly 3 batches.</p>
+
+  <form action="/load" method="post">
+    <label>username:</label><input type="text" name="user">
+    <label>password:</label><input type="text" name="pw">
+    <div class="submit"><input type="submit" value="Load"></div>
+  </form>
+
+  <br><br>
+  <h2>Issue Certificates!</h2>
+  <p>Last but not least, the form below allows you to build and issue certificates to the blockchain. The local copies of the certificates will be returned to you as a zip file. You must include a CSV of the people whom would like to issue a certificate.
+    The CSV's format should be the following:<br> Firstname Lastname, email, publickey<br> e.g.
+    <br> Vanessa Guzman,343@holbertonschool.com,1L9u9qjqTmK2B1qHUz1Xp46WRCK6BuqvuD<br> Tyler Evans,321@holbertonschool.com,1K429q4qTgKhB1aHUzeXp46WR5KvBhqvxO<br> Jannet Shaw,43@holbertonschool.com,1M2g6visEcn4B1qHFj1Kl46WRTY6BuqRPl<br>
+  </p>
+
+  <form action="/issue" method="post" enctype="multipart/form-data">
+    <label> username: </label><input type="text" name="user">
+    <label> password: </label><input type="text" name="pw">
+    <label> website: </label><input type="text" name="issuer_url">
+    <label> email: </label><input type="text" name="issuer_email">
+    <label> issuer name: </label><input type="text" name="issuer_name">
+    <label> *website*id: </label><input type="text" name="issuer_id">
+    <label> *database*publickey:</label><input type="text" name="issuer_public_key">
+    <label> certification title: </label><input type="text" name="certificate_title">
+    <label> criteria narrative: </label><input type="text" name="criteria_narrative">
+    <label> badge id: </label><input type="text" name="badge_id">
+    <label> roster: </label><input type="file" name="csv">
+    <div class="submit"><input type="submit" value="Issue Certificates"></div>
+  </form>
+
+</body>

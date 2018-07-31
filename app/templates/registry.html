@@ -1,0 +1,26 @@
+<!doctype html>
+<head>
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/styles.css" rel="stylesheet">
+</head>
+<title>Blockness</title>
+<div class="load">
+<h2>Blockness Registry</h2>
+<p>Register a public key:</p>
+<form action="/registry/register" method="post">
+  username: <input type="text" name="user"><br>
+  password: <input type="text" name="pw"><br>
+  public key: <input type="text" name="key"><br>
+  <input type="submit" value="Submit">
+</form>
+<p> Search Registry by username: </p> 
+<form action="/registry/fetch" method="post">
+  username: <input type="text" name="user"><br>
+  <input type="submit" value="Submit">
+</form>
+<ul style="list-style-type: none">
+	{% for person in info %}
+		<li>{{person[0]}} <br> {{person[2]}}</li><br><br>
+	{% endfor %}
+</ul>
+</div>

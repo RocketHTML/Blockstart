@@ -1,0 +1,136 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="/static/styles_V1.css" rel="stylesheet">
+  <link href="/static/styles.css" rel="stylesheet">
+</head>
+<title>Blockstart</title>
+
+<main>
+  <header class="masthead text-white text-center">
+	<div class="header-wrapper">
+    <h2>Blockstart</h2>
+		<p color="red">{{message}}</p>
+		<a href="/download">download certs<a>
+  <p>
+  create / issue / verify / TRUST
+  </p>
+	</div>
+</header>
+
+<body>
+  <div class="reg">
+    <h3>click <a href='/registry'>here</a> to register your public keys.</h3>
+   <p>If you have a tgz file containing certs, you can upload them to the verifier here.</p>
+   <form action="/verify" method="post" enctype="multipart/form-data">
+      <input name="tgz" type="file" class="form-control-file" id="exampleFormControlFile1">
+      <button type="submit" class="btn btn-outline-primary">Verify</button><br>
+   </form>
+  </div>
+
+<div class="create">
+  <h2> Create Issuer Wallet </h2>
+  <p> You'll need a bitcoin wallet in order to issue certificates to others. This step can be done with the click of a button.</p>
+  <img src="static/bitwallet.png">
+  <div class="form">
+  <form action="/new" method="post">
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon" id="sizing-addon1">@</span>
+			<input type="text" name="user" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon" id="sizing-addon1">@</span>
+      <input type="password" name="pw" value="" class="form-control" placeholder="Password" aria-describedby="sizing-addon1">
+		</div>
+    <button type="submit" class="btn btn-outline-primary">Register</button>
+  </form>
+</div>
+</div>
+
+<div class="load">
+  <h2>Load Money</h2>
+  <p>Writing data to the blockchain requires resources, so there is a small miner's fee of about $2 to $3 for each transaction you write. Luckily you can write <em>as much data as you want</em> within each transaction, and so it's most efficient to issue certificates in batches. The form below will allow you to load $10 onto your issuer wallet, which should be enough for roughly 3 batches.</p>
+  <img src="static/loadcoin.png"><script></script>
+  <div class="form">
+  <form action="/load" method="post">
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon">@</span>
+			<input type="text" name="user" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon">@</span>
+      <input type="password" name="pw" value="" class="form-control" placeholder="Password" aria-describedby="sizing-addon1">
+		</div>
+    <button type="submit" class="btn btn-outline-primary">Load</button>
+  </form>
+  </div>
+</div>
+
+<div class="issue">
+  <h2>Issue Certificates!</h2>
+  <p>Last but not least, the form below allows you to build and issue certificates to the blockchain. The local copies of the certificates will be returned to you as a zip file. You must include a CSV of the people whom would like to issue a certificate. The CSV's format should be the following:<br>
+  Firstname Lastname, email, publickey<br>
+  e.g.<br>
+  Vanessa Guzman,343@holbertonschool.com,1L9u9qjqTmK2B1qHUz1Xp46WRCK6BuqvuD<br> 
+  Tyler Evans,321@holbertonschool.com,1K429q4qTgKhB1aHUzeXp46WR5KvBhqvxO<br>
+  Jannet Shaw,43@holbertonschool.com,1M2g6visEcn4B1qHFj1Kl46WRTY6BuqRPl<br>
+  </p>
+  <img src="static/tochain.png">
+  <div class="form">
+  <form action="/issue" method="post" enctype="multipart/form-data">
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon">@</span>
+ 			<input type="text" class="form-control" placeholder="username" name="user">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon">@</span>
+ 			<input type="password" class="form-control" placeholder="password" name="pw">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon">@</span>
+ 			<input type="text" class="form-control" placeholder="website" name="issuer_url">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon">@</span>
+ 			<input type="text" class="form-control" placeholder="email" name="issuer_email">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon">@</span>
+ 			<input type="text" class="form-control" placeholder="issuer name" name="issuer_name">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon">@</span>
+ 			<input type="text" class="form-control" placeholder="*website*id" name="issuer_id">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon">@</span>
+ 			<input type="text" class="form-control" placeholder="*database*publickey" name="issuer_public_key">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon">@</span>
+ 			<input type="text" class="form-control" placeholder="certification description" name="certificate_description">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon">@</span>
+ 			<input type="text" class="form-control" placeholder="certification title" name="certificate_title">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon">@</span>
+ 			<input type="text" class="form-control" placeholder="criteria narrative" name="criteria_narrative">
+		</div>
+		<div class="input-group input-group-lg">
+			<span class="input-group-addon">@</span>
+ 			<input type="text" class="form-control" placeholder="badge id" name="badge_id">
+		</div>
+<div id="file-Selector" class="form-group file-Selector">
+    <label for="exampleFormControlFile1">roster: </label>
+    <input name="csv" type="file" class="form-control-file" id="exampleFormControlFile1">
+  </div>
+    <button type="submit" class="btn btn-outline-primary">Issue Certificates</button><br>
+</form>
+</div>
+</div>
+</body>
+</main>

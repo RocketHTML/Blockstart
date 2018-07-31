@@ -1,0 +1,19 @@
+<!doctype html>
+<head>
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/styles.css" rel="stylesheet">
+</head>
+<title>Blockness</title>
+<div class="reg">
+<h2>Blockness</h2>
+
+<p> Registered keys for user: {{user}} </p>
+<ul style="list-style-type: none">
+
+	{% for keyrec in info %}
+		<li> {{keyrec[0]}} - {{keyrec[2]}}</li>
+	{% endfor %}
+
+</ul>
+<a href='/registry'>back</a>
+</div>

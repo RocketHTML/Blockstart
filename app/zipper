@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd "$2"
+tar -zcvf "$1" .
+cd -
+mv "$2/$1" .
